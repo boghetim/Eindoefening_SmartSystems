@@ -40,7 +40,7 @@ def preprocess(image):
 
 def live(model, camera):
     global dataset
-	camera.running = True
+    camera.running = True
     while True:
         image = camera.value
         preprocessed = preprocess(image)
@@ -53,18 +53,11 @@ def live(model, camera):
 
 
 def train(is_training, model):
-	global BATCH_SIZE, LEARNING_RATE, MOMENTUM, EPOCHS, dataset
-    
+    global BATCH_SIZE, LEARNING_RATE, MOMENTUM, EPOCHS, dataset
     try:
-		epoch = EPOCHS
-		optimizer = torch.optim.Adam(model.parameters())
-
-        train_loader = torch.utils.data.DataLoader(
-            dataset,
-            batch_size=BATCH_SIZE,
-            shuffle=True
-        )
-
+        epoch = EPOCHS
+        optimizer = torch.optim.Adam(model.parameters())
+        train_loader = torch.utils.data.DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=True)
         if is_training:
             model = model.train()
         else:
@@ -100,7 +93,7 @@ def train(is_training, model):
                 count = len(labels.flatten())
                 i += count
                 sum_loss += float(loss)
-				print(str(i / len(dataset)), "loss:", str(sum_loss / i), "acc:", str(1.0 - error_count / i))
+                print(str(i / len(dataset)), "loss:", str(sum_loss / i), "acc:", str(1.0 - error_count / i))
                 
             if is_training:
                 epoch -= 1
