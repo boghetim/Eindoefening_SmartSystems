@@ -4,7 +4,7 @@
 
 ![vraag2](./MEDIA/vraag2ss.png?raw=true)
 
-#Tips
+## Tips
 Use python3.
 Don't use the venv.
 
