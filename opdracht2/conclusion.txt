@@ -1,0 +1,9 @@
+As explained in the notebooks we use the AUC-PR metric to measure the performance of each method because our dataset is very imbalanced. If we used for example AUC our performance would be too optimistic, since we aren't that interested in the majority of valid transactions, but rather in the minority of fraudulous transactions. AUC-PR is commonly used with imbalanced datasets where the interest lies in the minority.
+
+The supervised anomaly detection using XGBoost has the best AUC_PR with 0.88. This isn't amazing but is likely due to the imbalance in the dataset, making it harder for the model to learn what fraudulous transactions look like.
+
+The unsupervised anomaly detection using an autoencoder doesn't have a great AUC-PR, only 0.67. Even though the autoencoder itself is very good at encoding and decoding valid transactions, it seems that the model is also too good at encoding and decoding the fraudulous transactions, which is not what we want. This results in a lot of the fraudulous transactions being classified as valid transactions, and therefore a bad AUC-PR.
+
+The unsupervised anomaly detection using a GAN then has the worst AUC-PR, only 0.46. This might be due to the fact that the GAN requires a lot of steps to be programmed manually by us, which may have resulted in a mistake somewhere. The GAN seems to not improve at all, the losses remaining about the same every epoch. Another possible point of failure is the time it takes to train the GAN. It takes much longer than the other two methods, which means we could only realistically run about 10 epochs, definitely not 100 like the other methods.
+
+It seems that the simplest method performed the best in our case. Though both the unsupervised methods have a much more interesting way of detecting the anomalies. Both sort of making use of the side effects of existing models (autoencoder and GAN) that are used in other areas of ML.
